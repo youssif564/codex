@@ -30,11 +30,17 @@ img, video { max-width: 100%; display: block; }
 .top-strip {
   background: #101010;
   border-bottom: 1px solid rgba(255,214,119,.22);
-  color: rgba(255,255,255,.82);
+  color: rgba(255,255,255,.74);
   text-align: center;
-  font-weight: 900;
-  padding: 9px 14px;
-  font-size: .92rem;
+  font-weight: 800;
+  padding: 8px 14px;
+  font-size: clamp(.78rem, 1.8vw, .92rem);
+  line-height: 1.45;
+}
+.top-strip span {
+  display: block;
+  max-width: 780px;
+  margin-inline: auto;
 }
 
 .site-header {
@@ -226,18 +232,7 @@ img, video { max-width: 100%; display: block; }
   box-shadow: var(--shadow);
 }
 .product-frame img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 26px; filter: contrast(1.04) saturate(1.04); }
-.device-chip {
-  position: absolute;
-  inset-inline-start: 30px;
-  bottom: 30px;
-  border-radius: 18px;
-  padding: 12px 14px;
-  background: rgba(0,0,0,.78);
-  border: 1px solid rgba(141,255,173,.3);
-  backdrop-filter: blur(12px);
-}
-.device-chip small { color: var(--muted); display: block; line-height: 1.1; }
-.device-chip strong { color: var(--safe); }
+.device-chip { display: none !important; }
 .thumb-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: min(360px, 82%); margin: 14px auto 0; position: relative; z-index: 3; }
 .thumb { border: 2px solid rgba(255,255,255,.12); border-radius: 16px; overflow: hidden; background: transparent; cursor: pointer; opacity: .84; }
 .thumb.active, .thumb:hover { opacity: 1; border-color: var(--gold-soft); }
@@ -503,7 +498,12 @@ img, video { max-width: 100%; display: block; }
 }
 
 @media (max-width: 620px) {
-  .top-strip { font-size: .8rem; }
+  .top-strip {
+    font-size: .78rem;
+    font-weight: 750;
+    line-height: 1.55;
+    padding: 7px 18px;
+  }
   .brand img { width: 142px; height: 58px; }
   .lang-btn { min-height: 42px; font-size: .9rem; }
   .hero { min-height: auto; padding: 42px 0 36px; }
