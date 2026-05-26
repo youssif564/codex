@@ -162,6 +162,23 @@ img, video { max-width: 100%; display: block; }
   font-weight: 900;
   margin-bottom: 12px;
 }
+.launch-offer-line {
+  display: inline-grid;
+  gap: 2px;
+  padding: 10px 0;
+  margin-bottom: 14px;
+  border-block: 1px solid rgba(255,214,119,.2);
+}
+.launch-offer-line strong {
+  color: var(--gold-soft);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  line-height: 1.15;
+}
+.launch-offer-line span {
+  color: rgba(255,255,255,.62);
+  font-size: .92rem;
+  font-weight: 800;
+}
 .hero h1 {
   font-size: clamp(2.8rem, 6.6vw, 6.7rem);
   line-height: 1.02;
@@ -203,6 +220,14 @@ img, video { max-width: 100%; display: block; }
 .checkout-trust-notes {
   justify-content: center;
   margin: 14px 0 0;
+}
+.order-urgency {
+  width: fit-content;
+  margin: 14px auto 0;
+  color: var(--gold-soft);
+  font-weight: 900;
+  font-size: .96rem;
+  border-bottom: 1px solid rgba(255,214,119,.35);
 }
 .signal-row {
   display: grid;
@@ -299,6 +324,36 @@ img, video { max-width: 100%; display: block; }
   color: rgba(255,255,255,.58);
   font-size: .88rem;
   font-weight: 800;
+}
+
+.conversion-band-section {
+  padding: 20px 0 34px;
+  background: #000;
+}
+.conversion-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 0;
+  border-block: 1px solid rgba(255,255,255,.1);
+}
+.conversion-band span {
+  display: inline-flex;
+  color: var(--gold-soft);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.conversion-band h2 {
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+.conversion-band p {
+  color: rgba(255,255,255,.62);
 }
 .identity-grid {
   display: grid;
@@ -463,6 +518,22 @@ img, video { max-width: 100%; display: block; }
 .price-row { margin-top: auto; display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
 .old-price { color: rgba(255,255,255,.42); text-decoration: line-through; white-space: nowrap; }
 .new-price { color: var(--gold-soft); font-size: 1.6rem; font-weight: 950; white-space: nowrap; }
+.product-sale-line {
+  display: grid;
+  gap: 5px;
+  margin: -4px 0 14px;
+  padding-block: 12px;
+  border-block: 1px solid rgba(255,255,255,.08);
+}
+.product-sale-line strong {
+  color: var(--gold-soft);
+  font-size: .92rem;
+}
+.product-sale-line span {
+  color: rgba(255,255,255,.62);
+  font-size: .88rem;
+  font-weight: 800;
+}
 .choose-btn { width: 100%; min-height: 54px; }
 
 .proof-section { background: #050505; }
@@ -654,6 +725,12 @@ img, video { max-width: 100%; display: block; }
   .hero h1 { font-size: clamp(2rem, 11vw, 3.1rem); text-align: start; }
   .hero-subtitle { font-size: 1rem; }
   .hero-actions .btn { width: 100%; }
+  .conversion-band {
+    display: grid;
+  }
+  .conversion-band .btn {
+    width: 100%;
+  }
   .purchase-notes {
     margin-top: -10px;
     display: grid;
