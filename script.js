@@ -18,6 +18,21 @@ let selectedProductId = "smart";
 let selectedDeliveryRegion = "cairo_giza";
 let reviewsExpanded = false;
 let latestReviewsData = [];
+let liveReviewsDb = null;
+let liveReviewsEnabled = false;
+
+const firebaseConfigLiveReviews = {
+  apiKey: "AIzaSyDJF6D0MrFt8TsXsMcTpu8EqVp0deRh9aQ",
+  authDomain: "modo-smart-wallets.firebaseapp.com",
+  projectId: "modo-smart-wallets",
+  storageBucket: "modo-smart-wallets.firebasestorage.app",
+  messagingSenderId: "229690155538",
+  appId: "1:229690155538:web:4ec04258e5880485892ecb",
+  measurementId: "G-H402HQ36YF"
+};
+
+const CLOUDINARY_CLOUD_NAME = "di3fqqtn1";
+const CLOUDINARY_UPLOAD_PRESET = "modosmartwallets";
 
 const products = [
   {
@@ -95,8 +110,9 @@ const translations = {
     identity1Title: "مصممة ضد الضياع", identity1Text: "المحفظة مش مجرد شكل. الفكرة الأساسية إنك تاخد تنبيه وتقدر تخليها ترن لما تختفي.", identity2Title: "طلب أكثر أمانًا", identity2Text: "الدفع عند الاستلام، تأكيد واتساب، واستبدال 7 أيام في حالة عيب تصنيع.", identity3Title: "جلد طبيعي 100%", identity3Text: "جلد طبيعي 100% وتشطيب هادي يناسب الشغل، الخروج، والهدايا.",
     ugcEyebrow: "تجربة حقيقية", ugcTitle: "شوف الإحساس قبل ما تطلب", ugcText: "فيديو قصير يوضح شكل المحفظة واستخدام فكرة التتبع من غير شرح زيادة.",
     productsEyebrow: "مجموعة MODO", productsTitle: "اختار درجة الحماية والفخامة", productsSubtitle: "كل موديل له نفس روح MODO: شكل نظيف، طلب آمن، وتجربة يومية أهدى.", chooseProduct: "اطلب الآن", readMoreProduct: "اقرأ المزيد", premiumFreeDelivery: "توصيل مجاني",
-    reviewsEyebrow: "آراء العملاء", reviewsTitle: "ثقة حقيقية مش كلام كتير", reviewsSubtitle: "أول انطباع مهم: خامة، شكل، وسهولة طلب.", latestReviews: "أحدث التقييمات", viewAllReviews: "عرض كل التقييمات", showLessReviews: "عرض أقل", writeReviewTitle: "اكتب تقييمك",
-    reviewNameLabel: "الاسم", reviewCityLabel: "المدينة", reviewRatingLabel: "التقييم", reviewTextLabel: "رأيك في المنتج", submitReview: "نشر التقييم مباشرة", reviewStatusReady: "التقييم سيظهر مباشرة بعد النشر.",
+    purchaseNoteCOD: "الدفع عند الاستلام", purchaseNoteDelivery: "توصيل 24–72 ساعة", purchaseNoteReplace: "استبدال 7 أيام لعيب التصنيع", trustMetricRating: "تقييم العملاء", trustMetricCustomers: "عميل داخل مصر", trustMetricCOD: "الدفع عند الاستلام", trustMetricDelivery: "توصيل سريع",
+    reviewsEyebrow: "آراء العملاء", reviewsTitle: "ثقة حقيقية مش كلام كتير", reviewsSubtitle: "كل التقييمات ظاهرة، ومعاها الصور لو العميل رفع صورة للمنتج.", latestReviews: "كل التقييمات", viewAllReviews: "عرض كل التقييمات", showLessReviews: "عرض أقل", writeReviewTitle: "اكتب تقييمك",
+    reviewNameLabel: "الاسم", reviewCityLabel: "المدينة", reviewRatingLabel: "التقييم", reviewTextLabel: "رأيك في المنتج", reviewImageLabel: "صورة اختيارية للمنتج", submitReview: "نشر التقييم مباشرة", reviewStatusReady: "التقييم سيظهر مباشرة بعد النشر.",
     orderEyebrow: "اطلب بأمان", orderTitle: "بيانات الطلب", orderSubtitle: "هنفتح واتساب فورًا لتأكيد الطلب، والإيميل يتبعت تلقائيًا في الخلفية.", selectedLabel: "الموديل المختار", formProduct: "اختار المنتج", formName: "الاسم", formPhone: "رقم الموبايل", formAddress: "العنوان بالتفصيل", formDeliveryRegion: "منطقة التوصيل", formPayment: "طريقة الدفع", formNotes: "ملاحظات اختيارية", paymentCOD: "الدفع عند الاستلام", submitOrder: "إرسال الطلب", orderSuccess: "تم تأكيد طلبك", formNote: "بياناتك تستخدم لتأكيد الطلب فقط.",
     deliveryCairoGiza: "القاهرة والجيزة — 99 جنيه", deliveryAlex: "الإسكندرية — 120 جنيه", deliveryDeltaCanal: "الدلتا والقناة — 125 جنيه", deliveryAssiut: "أسيوط — 200 جنيه", deliveryNorthCoast: "الساحل الشمالي — 220 جنيه", checkoutTotalLabel: "إجمالي السعر شامل التوصيل", premiumFreeDeliveryCheckout: "توصيل مجاني مع Modo Premium Wallet",
     footerAbout: "محافظ جلد طبيعي 100% ضد الضياع بإحساس آمن وفاخر.", footerContact: "التواصل", footerSocial: "تابعنا", copyright: "© 2026 Modo Smart Wallets. جميع الحقوق محفوظة.", stickyCTA: "اطلب الآن",
@@ -129,8 +145,9 @@ const translations = {
     identity1Title: "Anti-loss by design", identity1Text: "The wallet is not just about looks. It is made to alert you and ring when it disappears.", identity2Title: "Safer checkout", identity2Text: "Cash on Delivery, WhatsApp confirmation, and 7-day replacement for manufacturing defects.", identity3Title: "100% Natural Leather", identity3Text: "100% natural leather with a quiet finish for work, daily outings, and gifting.",
     ugcEyebrow: "Real demo", ugcTitle: "See the feel before ordering", ugcText: "A short video showing the wallet and the tracking idea without overexplaining it.",
     productsEyebrow: "MODO Collection", productsTitle: "Choose your protection and finish", productsSubtitle: "Every model keeps the MODO spirit: clean look, safe order, calmer daily carry.", chooseProduct: "Order now", readMoreProduct: "Read more", premiumFreeDelivery: "Free delivery",
-    reviewsEyebrow: "Customer reviews", reviewsTitle: "Real trust, less noise", reviewsSubtitle: "The first impression matters: material, look, and easy ordering.", latestReviews: "Latest reviews", viewAllReviews: "View all reviews", showLessReviews: "Show less", writeReviewTitle: "Write your review",
-    reviewNameLabel: "Name", reviewCityLabel: "City", reviewRatingLabel: "Rating", reviewTextLabel: "Your review", submitReview: "Publish review live", reviewStatusReady: "Your review will appear after publishing.",
+    purchaseNoteCOD: "Cash on Delivery", purchaseNoteDelivery: "24–72h delivery", purchaseNoteReplace: "7-day defect replacement", trustMetricRating: "Customer rating", trustMetricCustomers: "Customers in Egypt", trustMetricCOD: "Cash on Delivery", trustMetricDelivery: "Fast delivery",
+    reviewsEyebrow: "Customer reviews", reviewsTitle: "Real trust, less noise", reviewsSubtitle: "All reviews are visible, including product photos when customers upload them.", latestReviews: "All reviews", viewAllReviews: "View all reviews", showLessReviews: "Show less", writeReviewTitle: "Write your review",
+    reviewNameLabel: "Name", reviewCityLabel: "City", reviewRatingLabel: "Rating", reviewTextLabel: "Your review", reviewImageLabel: "Optional product photo", submitReview: "Publish review live", reviewStatusReady: "Your review will appear after publishing.",
     orderEyebrow: "Order safely", orderTitle: "Order details", orderSubtitle: "WhatsApp opens immediately to confirm your order, while the email sends in the background.", selectedLabel: "Selected model", formProduct: "Choose product", formName: "Name", formPhone: "Phone number", formAddress: "Detailed address", formDeliveryRegion: "Delivery area", formPayment: "Payment method", formNotes: "Optional notes", paymentCOD: "Cash on Delivery", submitOrder: "Send order", orderSuccess: "Your order is confirmed", formNote: "Your details are used only to confirm the order.",
     deliveryCairoGiza: "Cairo & Giza — 99 EGP", deliveryAlex: "Alexandria — 120 EGP", deliveryDeltaCanal: "Delta & Canal — 125 EGP", deliveryAssiut: "Assiut — 200 EGP", deliveryNorthCoast: "North Coast — 220 EGP", checkoutTotalLabel: "Total including delivery", premiumFreeDeliveryCheckout: "Free delivery with Modo Premium Wallet",
     footerAbout: "Anti-loss 100% natural leather wallets with a safer premium feel.", footerContact: "Contact", footerSocial: "Follow us", copyright: "© 2026 Modo Smart Wallets. All rights reserved.", stickyCTA: "Order now",
@@ -157,9 +174,10 @@ const translations = {
 };
 
 const defaultReviews = [
-  { name: "أحمد", city: "القاهرة", rating: 5, text: "الخامة شيك جداً والمحفظة حجمها مناسب. وصلت بسرعة والدفع كان عند الاستلام.", createdAtText: "اليوم" },
+  { name: "أحمد", city: "القاهرة", rating: 5, text: "الخامة شيك جداً والمحفظة حجمها مناسب. وصلت بسرعة والدفع كان عند الاستلام.", imageUrl: `${IMG_BASE}smart-wallet.jpg`, createdAtText: "اليوم" },
   { name: "عمر", city: "الجيزة", rating: 5, text: "ميزة التنبيه ممتازة. شكلها فخم ومش تقني زيادة.", createdAtText: "أمس" },
-  { name: "كريم", city: "الإسكندرية", rating: 5, text: "اشتريتها هدية وكانت ممتازة. التغليف والجلد شكلهم راقي.", createdAtText: "هذا الأسبوع" }
+  { name: "كريم", city: "الإسكندرية", rating: 5, text: "اشتريتها هدية وكانت ممتازة. التغليف والجلد شكلهم راقي.", imageUrl: `${IMG_BASE}premium-wallet.jpg`, createdAtText: "هذا الأسبوع" },
+  { name: "يوسف", city: "القاهرة", rating: 5, text: "حبيت إن شكلها جلد طبيعي فعلاً ومش باين عليها إنها تقنية. فكرة الصوت مفيدة جداً.", imageUrl: `${IMG_BASE}classic-wallet.jpg`, createdAtText: "هذا الشهر" }
 ];
 
 function t(key) { return translations[currentLang]?.[key] || key; }
@@ -181,6 +199,45 @@ function escapeHtml(text) {
   const div = document.createElement("div");
   div.textContent = String(text || "");
   return div.innerHTML;
+}
+
+function reviewIsConfigured(value) {
+  return value && !String(value).includes("PUT_YOUR");
+}
+
+function readImageAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result || "");
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadReviewImage(file) {
+  if (!file) return "";
+  if (!file.type.startsWith("image/")) throw new Error("Please upload an image file.");
+  if (file.size > 3 * 1024 * 1024) throw new Error("Image must be less than 3 MB.");
+
+  const cloudReady = reviewIsConfigured(CLOUDINARY_CLOUD_NAME) && reviewIsConfigured(CLOUDINARY_UPLOAD_PRESET);
+  if (!cloudReady) return readImageAsDataUrl(file);
+
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    formData.append("folder", "modo-reviews");
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+      method: "POST",
+      body: formData
+    });
+    if (!response.ok) throw new Error("Image upload failed.");
+    const data = await response.json();
+    return data.secure_url || "";
+  } catch (error) {
+    console.warn("Cloudinary upload failed, storing the image locally.", error);
+    return readImageAsDataUrl(file);
+  }
 }
 
 async function sendOrderEmailViaEmailJS(orderData) {
@@ -341,6 +398,7 @@ function renderLiveReviews(reviews) {
     .slice(0, 30);
   grid.innerHTML = latestReviewsData.map(review => `
     <article class="review-card reveal">
+      ${review.imageUrl ? `<img src="${escapeHtml(review.imageUrl)}" alt="Customer review photo" loading="lazy">` : ""}
       <div class="stars">${"★".repeat(Number(review.rating) || 5)}</div>
       <p>${escapeHtml(review.text)}</p>
       <strong>${escapeHtml(review.name)}${review.city ? ` — ${escapeHtml(review.city)}` : ""}</strong>
@@ -361,6 +419,52 @@ function updateReviewsToggle() {
   grid.classList.toggle("compact-one", !reviewsExpanded && hasMore);
 }
 
+async function initLiveReviews() {
+  const badge = document.querySelector(".reviews-toolbar span");
+  const firebaseReady =
+    reviewIsConfigured(firebaseConfigLiveReviews.apiKey) &&
+    reviewIsConfigured(firebaseConfigLiveReviews.authDomain) &&
+    reviewIsConfigured(firebaseConfigLiveReviews.projectId) &&
+    reviewIsConfigured(firebaseConfigLiveReviews.appId);
+
+  if (!firebaseReady) {
+    if (badge) badge.textContent = currentLang === "ar" ? "محلي" : "Local";
+    renderLiveReviews(getLocalReviews());
+    return;
+  }
+
+  try {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
+    const firestore = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
+    const app = initializeApp(firebaseConfigLiveReviews);
+    liveReviewsDb = firestore.getFirestore(app);
+    liveReviewsEnabled = true;
+    window.modoFirestore = firestore;
+    if (badge) badge.textContent = "Live";
+
+    const reviewsQuery = firestore.query(
+      firestore.collection(liveReviewsDb, "modoReviews"),
+      firestore.orderBy("createdAt", "desc"),
+      firestore.limit(30)
+    );
+
+    firestore.onSnapshot(reviewsQuery, snapshot => {
+      const reviews = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      renderLiveReviews(reviews.length ? reviews : getLocalReviews());
+    }, error => {
+      console.error("Firebase review listener error:", error);
+      liveReviewsEnabled = false;
+      if (badge) badge.textContent = currentLang === "ar" ? "محلي" : "Local";
+      renderLiveReviews(getLocalReviews());
+    });
+  } catch (error) {
+    console.error("Firebase init error:", error);
+    liveReviewsEnabled = false;
+    if (badge) badge.textContent = currentLang === "ar" ? "محلي" : "Local";
+    renderLiveReviews(getLocalReviews());
+  }
+}
+
 function setupReviews() {
   const toggle = document.getElementById("reviewsToggleBtn");
   const writeToggle = document.getElementById("writeReviewToggle");
@@ -374,20 +478,53 @@ function setupReviews() {
     form.classList.toggle("review-form-collapsed");
     if (form.classList.contains("review-form-open")) form.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-  if (form) form.addEventListener("submit", event => {
+  if (form) form.addEventListener("submit", async event => {
     event.preventDefault();
+    const status = document.getElementById("reviewStatus");
+    const submitBtn = document.getElementById("reviewSubmitBtn");
+    const imageFile = document.getElementById("reviewImage")?.files?.[0];
+    if (submitBtn) submitBtn.disabled = true;
+    if (status) status.textContent = currentLang === "ar" ? "جاري نشر التقييم..." : "Publishing review...";
+
+    let imageUrl = "";
+    try {
+      imageUrl = await uploadReviewImage(imageFile);
+    } catch (error) {
+      console.error(error);
+      if (status) status.textContent = currentLang === "ar" ? "الصورة كبيرة أو غير صالحة." : "The image is too large or invalid.";
+      if (submitBtn) submitBtn.disabled = false;
+      return;
+    }
+
     const review = {
       name: document.getElementById("reviewName").value.trim(),
       city: document.getElementById("reviewCity").value.trim(),
       rating: Number(document.getElementById("reviewRating").value),
       text: document.getElementById("reviewText").value.trim(),
+      imageUrl,
       createdAtText: new Date().toLocaleDateString(currentLang === "ar" ? "ar-EG" : "en-GB")
     };
-    const saved = JSON.parse(localStorage.getItem("modoLocalReviews") || "[]");
-    saved.unshift(review);
-    localStorage.setItem("modoLocalReviews", JSON.stringify(saved.slice(0, 30)));
-    form.reset();
-    renderLiveReviews(getLocalReviews());
+
+    try {
+      if (liveReviewsEnabled && liveReviewsDb && window.modoFirestore) {
+        await window.modoFirestore.addDoc(window.modoFirestore.collection(liveReviewsDb, "modoReviews"), {
+          ...review,
+          createdAt: window.modoFirestore.serverTimestamp()
+        });
+      } else {
+        const saved = JSON.parse(localStorage.getItem("modoLocalReviews") || "[]");
+        saved.unshift(review);
+        localStorage.setItem("modoLocalReviews", JSON.stringify(saved.slice(0, 30)));
+        renderLiveReviews(getLocalReviews());
+      }
+      form.reset();
+      if (status) status.textContent = currentLang === "ar" ? "تم نشر تقييمك بنجاح." : "Your review was published.";
+    } catch (error) {
+      console.error(error);
+      if (status) status.textContent = currentLang === "ar" ? "حدث خطأ. حاول مرة أخرى." : "Something went wrong. Please try again.";
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 }
 
@@ -500,5 +637,6 @@ setupGallery();
 setupMenu();
 setupReveal();
 setupReviews();
+initLiveReviews();
 setupStickyCtaVisibility();
 setupOrderForm();
