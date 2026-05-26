@@ -57,7 +57,7 @@ const products = [
   {
     id: "classic",
     oldPrice: 499,
-    price: 450,
+    price: 399,
     image: `${IMG_BASE}classic-wallet.jpg`,
     featured: false,
     ar: {
@@ -105,15 +105,16 @@ const translations = {
     topOffer: "عرض إطلاق لأول 25 قطعة فقط — شحن سريع والدفع عند الاستلام داخل مصر",
     brandAntiLoss: "ضد الضياع", brandSafe: "طلب آمن", brandLeather: "جلد طبيعي 100%",
     navProducts: "المنتجات", navAbout: "عن مودو", navStory: "قصتنا", navWhy: "ليه تختار مودو", navHow: "طريقة الاستخدام", navReviews: "التقييمات", navFAQ: "الأسئلة", navCTA: "اطلب الآن",
-    heroKicker: "MODO Wallet Egypt", heroTitle: "محفظة ضد الضياع من جلد طبيعي 100%", heroSubtitle: "جلد طبيعي 100%، تتبع ذكي بالموبايل، تنبيه عند الابتعاد، وصوت يساعدك تلاقي محفظتك بسرعة.", heroCTA: "اطلب الآن", heroExplore: "شوف المحافظ",
+    heroKicker: "MODO Wallet Egypt", launchOfferStrong: "وفر حتى 499 جنيه", launchOfferText: "عرض إطلاق محدود لأول 25 قطعة", heroTitle: "محفظة ضد الضياع من جلد طبيعي 100%", heroSubtitle: "جلد طبيعي 100%، تتبع ذكي بالموبايل، تنبيه عند الابتعاد، وصوت يساعدك تلاقي محفظتك بسرعة.", heroCTA: "اطلب الآن", heroExplore: "شوف المحافظ",
     signal1Title: "ضد الضياع", signal1Text: "تنبيه عند الابتعاد", signal2Title: "طلب آمن", signal2Text: "الدفع عند الاستلام", signal3Title: "جلد طبيعي 100%", signal3Text: "خامة فاخرة", heroChipSmall: "المحفظة آمنة", heroChipStrong: "متصلة",
     identity1Title: "مصممة ضد الضياع", identity1Text: "المحفظة مش مجرد شكل. الفكرة الأساسية إنك تاخد تنبيه وتقدر تخليها ترن لما تختفي.", identity2Title: "طلب أكثر أمانًا", identity2Text: "الدفع عند الاستلام، تأكيد واتساب، واستبدال 7 أيام في حالة عيب تصنيع.", identity3Title: "جلد طبيعي 100%", identity3Text: "جلد طبيعي 100% وتشطيب هادي يناسب الشغل، الخروج، والهدايا.",
     ugcEyebrow: "تجربة حقيقية", ugcTitle: "شوف الإحساس قبل ما تطلب", ugcText: "فيديو قصير يوضح شكل المحفظة واستخدام فكرة التتبع من غير شرح زيادة.",
-    productsEyebrow: "مجموعة MODO", productsTitle: "اختار درجة الحماية والفخامة", productsSubtitle: "كل موديل له نفس روح MODO: شكل نظيف، طلب آمن، وتجربة يومية أهدى.", chooseProduct: "اطلب الآن", readMoreProduct: "اقرأ المزيد", premiumFreeDelivery: "توصيل مجاني",
+    productsEyebrow: "مجموعة MODO", productsTitle: "اختار درجة الحماية والفخامة", productsSubtitle: "كل موديل له نفس روح MODO: شكل نظيف، طلب آمن، وتجربة يومية أهدى.", chooseProduct: "اطلب الآن", readMoreProduct: "اقرأ المزيد", premiumFreeDelivery: "توصيل مجاني", saveLabel: "وفر", productCODLine: "الدفع عند الاستلام", productDeliveryLine: "شحن سريع داخل مصر",
     purchaseNoteCOD: "الدفع عند الاستلام", purchaseNoteDelivery: "توصيل 24–72 ساعة", purchaseNoteReplace: "استبدال 7 أيام لعيب التصنيع", trustMetricRating: "تقييم العملاء", trustMetricCustomers: "عميل داخل مصر", trustMetricCOD: "الدفع عند الاستلام", trustMetricDelivery: "توصيل سريع",
     reviewsEyebrow: "آراء العملاء", reviewsTitle: "ثقة حقيقية مش كلام كتير", reviewsSubtitle: "كل التقييمات ظاهرة، ومعاها الصور لو العميل رفع صورة للمنتج.", latestReviews: "كل التقييمات", viewAllReviews: "عرض كل التقييمات", showLessReviews: "عرض أقل", writeReviewTitle: "اكتب تقييمك",
     reviewNameLabel: "الاسم", reviewCityLabel: "المدينة", reviewRatingLabel: "التقييم", reviewTextLabel: "رأيك في المنتج", reviewImageLabel: "صورة اختيارية للمنتج", submitReview: "نشر التقييم مباشرة", reviewStatusReady: "التقييم سيظهر مباشرة بعد النشر.",
-    orderEyebrow: "اطلب بأمان", orderTitle: "بيانات الطلب", orderSubtitle: "هنفتح واتساب فورًا لتأكيد الطلب، والإيميل يتبعت تلقائيًا في الخلفية.", selectedLabel: "الموديل المختار", formProduct: "اختار المنتج", formName: "الاسم", formPhone: "رقم الموبايل", formAddress: "العنوان بالتفصيل", formDeliveryRegion: "منطقة التوصيل", formPayment: "طريقة الدفع", formNotes: "ملاحظات اختيارية", paymentCOD: "الدفع عند الاستلام", submitOrder: "إرسال الطلب", orderSuccess: "تم تأكيد طلبك", formNote: "بياناتك تستخدم لتأكيد الطلب فقط.",
+    conversionBandEyebrow: "عرض الإطلاق", conversionBandTitle: "اختار محفظتك الآن وادفع عند الاستلام", conversionBandText: "السعر الحالي لفترة محدودة، والتأكيد بيتم على واتساب قبل الشحن.", conversionBandCTA: "كمّل الطلب",
+    orderEyebrow: "اطلب بأمان", orderTitle: "بيانات الطلب", orderSubtitle: "هنفتح واتساب فورًا لتأكيد الطلب.", orderUrgency: "العرض الحالي محدود. احجز السعر قبل انتهاء أول 25 قطعة.", selectedLabel: "الموديل المختار", formProduct: "اختار المنتج", formName: "الاسم", formPhone: "رقم الموبايل", formAddress: "العنوان بالتفصيل", formDeliveryRegion: "منطقة التوصيل", formPayment: "طريقة الدفع", formNotes: "ملاحظات اختيارية", paymentCOD: "الدفع عند الاستلام", submitOrder: "إرسال الطلب", orderSuccess: "تم تأكيد طلبك", formNote: "بياناتك تستخدم لتأكيد الطلب فقط.",
     deliveryCairoGiza: "القاهرة والجيزة — 99 جنيه", deliveryAlex: "الإسكندرية — 120 جنيه", deliveryDeltaCanal: "الدلتا والقناة — 125 جنيه", deliveryAssiut: "أسيوط — 200 جنيه", deliveryNorthCoast: "الساحل الشمالي — 220 جنيه", checkoutTotalLabel: "إجمالي السعر شامل التوصيل", premiumFreeDeliveryCheckout: "توصيل مجاني مع Modo Premium Wallet",
     footerAbout: "محافظ جلد طبيعي 100% ضد الضياع بإحساس آمن وفاخر.", footerContact: "التواصل", footerSocial: "تابعنا", copyright: "© 2026 Modo Smart Wallets. جميع الحقوق محفوظة.", stickyCTA: "اطلب الآن",
     pageTopStrip: "ضد الضياع / طلب آمن / جلد طبيعي 100%",
@@ -140,15 +141,16 @@ const translations = {
     topOffer: "Launch offer for the first 25 pieces only — fast delivery and Cash on Delivery in Egypt",
     brandAntiLoss: "Anti-loss", brandSafe: "Safe order", brandLeather: "100% Leather",
     navProducts: "Products", navAbout: "About Modo", navStory: "Our Story", navWhy: "Why Modo", navHow: "How it works", navReviews: "Reviews", navFAQ: "FAQ", navCTA: "Order now",
-    heroKicker: "MODO Wallet Egypt", heroTitle: "Anti-loss wallet made from 100% natural leather", heroSubtitle: "100% natural leather, smart mobile tracking, out-of-range alerts, and an alarm sound to help you find your wallet fast.", heroCTA: "Order now", heroExplore: "View wallets",
+    heroKicker: "MODO Wallet Egypt", launchOfferStrong: "Save up to 499 EGP", launchOfferText: "Limited launch offer for the first 25 pieces", heroTitle: "Anti-loss wallet made from 100% natural leather", heroSubtitle: "100% natural leather, smart mobile tracking, out-of-range alerts, and an alarm sound to help you find your wallet fast.", heroCTA: "Order now", heroExplore: "View wallets",
     signal1Title: "Anti-loss", signal1Text: "Out-of-range alert", signal2Title: "Safe order", signal2Text: "Cash on Delivery", signal3Title: "100% Leather", signal3Text: "100% natural leather", heroChipSmall: "Wallet secured", heroChipStrong: "Connected",
     identity1Title: "Anti-loss by design", identity1Text: "The wallet is not just about looks. It is made to alert you and ring when it disappears.", identity2Title: "Safer checkout", identity2Text: "Cash on Delivery, WhatsApp confirmation, and 7-day replacement for manufacturing defects.", identity3Title: "100% Natural Leather", identity3Text: "100% natural leather with a quiet finish for work, daily outings, and gifting.",
     ugcEyebrow: "Real demo", ugcTitle: "See the feel before ordering", ugcText: "A short video showing the wallet and the tracking idea without overexplaining it.",
-    productsEyebrow: "MODO Collection", productsTitle: "Choose your protection and finish", productsSubtitle: "Every model keeps the MODO spirit: clean look, safe order, calmer daily carry.", chooseProduct: "Order now", readMoreProduct: "Read more", premiumFreeDelivery: "Free delivery",
+    productsEyebrow: "MODO Collection", productsTitle: "Choose your protection and finish", productsSubtitle: "Every model keeps the MODO spirit: clean look, safe order, calmer daily carry.", chooseProduct: "Order now", readMoreProduct: "Read more", premiumFreeDelivery: "Free delivery", saveLabel: "Save", productCODLine: "Cash on Delivery", productDeliveryLine: "Fast delivery in Egypt",
     purchaseNoteCOD: "Cash on Delivery", purchaseNoteDelivery: "24–72h delivery", purchaseNoteReplace: "7-day defect replacement", trustMetricRating: "Customer rating", trustMetricCustomers: "Customers in Egypt", trustMetricCOD: "Cash on Delivery", trustMetricDelivery: "Fast delivery",
     reviewsEyebrow: "Customer reviews", reviewsTitle: "Real trust, less noise", reviewsSubtitle: "All reviews are visible, including product photos when customers upload them.", latestReviews: "All reviews", viewAllReviews: "View all reviews", showLessReviews: "Show less", writeReviewTitle: "Write your review",
     reviewNameLabel: "Name", reviewCityLabel: "City", reviewRatingLabel: "Rating", reviewTextLabel: "Your review", reviewImageLabel: "Optional product photo", submitReview: "Publish review live", reviewStatusReady: "Your review will appear after publishing.",
-    orderEyebrow: "Order safely", orderTitle: "Order details", orderSubtitle: "WhatsApp opens immediately to confirm your order, while the email sends in the background.", selectedLabel: "Selected model", formProduct: "Choose product", formName: "Name", formPhone: "Phone number", formAddress: "Detailed address", formDeliveryRegion: "Delivery area", formPayment: "Payment method", formNotes: "Optional notes", paymentCOD: "Cash on Delivery", submitOrder: "Send order", orderSuccess: "Your order is confirmed", formNote: "Your details are used only to confirm the order.",
+    conversionBandEyebrow: "Launch offer", conversionBandTitle: "Choose your wallet now and pay on delivery", conversionBandText: "Current pricing is limited, and your order is confirmed on WhatsApp before shipping.", conversionBandCTA: "Complete order",
+    orderEyebrow: "Order safely", orderTitle: "Order details", orderSubtitle: "WhatsApp opens immediately to confirm your order.", orderUrgency: "The current offer is limited. Reserve the price before the first 25 pieces end.", selectedLabel: "Selected model", formProduct: "Choose product", formName: "Name", formPhone: "Phone number", formAddress: "Detailed address", formDeliveryRegion: "Delivery area", formPayment: "Payment method", formNotes: "Optional notes", paymentCOD: "Cash on Delivery", submitOrder: "Send order", orderSuccess: "Your order is confirmed", formNote: "Your details are used only to confirm the order.",
     deliveryCairoGiza: "Cairo & Giza — 99 EGP", deliveryAlex: "Alexandria — 120 EGP", deliveryDeltaCanal: "Delta & Canal — 125 EGP", deliveryAssiut: "Assiut — 200 EGP", deliveryNorthCoast: "North Coast — 220 EGP", checkoutTotalLabel: "Total including delivery", premiumFreeDeliveryCheckout: "Free delivery with Modo Premium Wallet",
     footerAbout: "Anti-loss 100% natural leather wallets with a safer premium feel.", footerContact: "Contact", footerSocial: "Follow us", copyright: "© 2026 Modo Smart Wallets. All rights reserved.", stickyCTA: "Order now",
     pageTopStrip: "Anti-loss / Safe / 100% Natural Leather",
@@ -311,6 +313,11 @@ function renderProducts() {
         <ul class="product-features">${d.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
         ${premiumMore}
         <div class="price-row"><span class="new-price">${money(product.price)}</span><span class="old-price">${money(product.oldPrice)}</span></div>
+        <div class="product-sale-line">
+          <strong>${t("saveLabel")} ${money(product.oldPrice - product.price)}</strong>
+          <span>${t("productCODLine")}</span>
+          <span>${product.id === "premium" ? t("premiumFreeDelivery") : t("productDeliveryLine")}</span>
+        </div>
         <button class="btn btn-primary choose-btn" type="button" data-product-id="${product.id}">${t("chooseProduct")}</button>
       </article>
     `;
