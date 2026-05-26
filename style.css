@@ -144,7 +144,7 @@ img, video { max-width: 100%; display: block; }
   border-radius: 999px;
   background: rgba(255,255,255,.04);
   border: 1px solid var(--line);
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 .brand-system span {
   border-radius: 999px;
@@ -160,7 +160,15 @@ img, video { max-width: 100%; display: block; }
   display: inline-flex;
   color: var(--gold-soft);
   font-weight: 900;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+}
+.hero-kicker {
+  display: block;
+  width: fit-content;
+  font-size: .88rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,214,119,.86);
 }
 .launch-offer-line {
   display: inline-grid;
