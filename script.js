@@ -47,13 +47,13 @@ const products = [
     featured: false,
     ar: {
       name: "Modo Classic Wallet",
-      tag: "كلاسيك آمن",
+      tag: "كلاسيك",
       desc: "محفظة جلد طبيعي 100% كلاسيكية لشكل أنيق واستخدام يومي نظيف.",
       features: ["جلد طبيعي 100%", "تصميم كلاسيكي", "خياطة عالية الجودة", "مناسبة للاستخدام اليومي", "شكل احترافي"]
     },
     en: {
       name: "Modo Classic Wallet",
-      tag: "Safe carry",
+      tag: "Classic",
       desc: "A clean 100% natural leather wallet for an elegant everyday carry.",
       features: ["100% natural leather", "Classic design", "Premium stitching", "Daily use", "Professional look"]
     }
@@ -374,8 +374,14 @@ function setupReviews() {
 function setupStickyCtaVisibility() {
   const sticky = document.querySelector(".sticky-mobile-cta");
   const hero = document.getElementById("home");
+  const order = document.getElementById("order");
   if (!sticky || !hero) return;
-  const update = () => sticky.classList.toggle("show", hero.getBoundingClientRect().bottom < 80);
+  const update = () => {
+    const heroPassed = hero.getBoundingClientRect().bottom < 80;
+    const orderRect = order ? order.getBoundingClientRect() : null;
+    const inCheckout = orderRect ? orderRect.top < window.innerHeight * 0.72 && orderRect.bottom > 120 : false;
+    sticky.classList.toggle("show", heroPassed && !inCheckout);
+  };
   update();
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
