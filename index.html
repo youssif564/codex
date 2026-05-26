@@ -74,6 +74,11 @@
             <a href="#order" class="btn btn-primary" data-i18n="heroCTA">اطلب الآن</a>
             <a href="#products" class="btn btn-secondary" data-i18n="heroExplore">شوف المحافظ</a>
           </div>
+          <div class="purchase-notes" aria-label="Order trust details">
+            <span data-i18n="purchaseNoteCOD">الدفع عند الاستلام</span>
+            <span data-i18n="purchaseNoteDelivery">توصيل 24–72 ساعة</span>
+            <span data-i18n="purchaseNoteReplace">استبدال 7 أيام لعيب التصنيع</span>
+          </div>
           <div class="signal-row">
             <div><strong data-i18n="signal1Title">Anti-loss</strong><span data-i18n="signal1Text">تنبيه عند الابتعاد</span></div>
             <div><strong data-i18n="signal2Title">Safe order</strong><span data-i18n="signal2Text">الدفع عند الاستلام</span></div>
@@ -97,23 +102,12 @@
       </div>
     </section>
 
-    <section class="identity-band">
-      <div class="container identity-grid">
-        <article class="identity-card reveal">
-          <span>01</span>
-          <h2 data-i18n="identity1Title">Anti-loss by design</h2>
-          <p data-i18n="identity1Text">المحفظة مش مجرد شكل. الفكرة الأساسية إنك تاخد تنبيه وتقدر تخليها ترن لما تختفي.</p>
-        </article>
-        <article class="identity-card reveal">
-          <span>02</span>
-          <h2 data-i18n="identity2Title">Safer checkout</h2>
-          <p data-i18n="identity2Text">الدفع عند الاستلام، تأكيد واتساب، واستبدال 7 أيام في حالة عيب تصنيع.</p>
-        </article>
-        <article class="identity-card reveal">
-          <span>03</span>
-          <h2 data-i18n="identity3Title">100% Natural Leather</h2>
-          <p data-i18n="identity3Text">جلد طبيعي 100% وتشطيب هادي يناسب الشغل، الخروج، والهدايا.</p>
-        </article>
+    <section class="trust-strip-section">
+      <div class="container trust-strip">
+        <div><strong>4.9/5</strong><span data-i18n="trustMetricRating">تقييم العملاء</span></div>
+        <div><strong>+100</strong><span data-i18n="trustMetricCustomers">عميل داخل مصر</span></div>
+        <div><strong>COD</strong><span data-i18n="trustMetricCOD">الدفع عند الاستلام</span></div>
+        <div><strong>24–72h</strong><span data-i18n="trustMetricDelivery">توصيل سريع</span></div>
       </div>
     </section>
 
@@ -165,6 +159,8 @@
             <select id="reviewRating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option></select>
             <label for="reviewText" data-i18n="reviewTextLabel">رأيك في المنتج</label>
             <textarea id="reviewText" required></textarea>
+            <label for="reviewImage" data-i18n="reviewImageLabel">صورة اختيارية للمنتج</label>
+            <input id="reviewImage" type="file" accept="image/*">
             <button class="btn btn-primary" type="submit" id="reviewSubmitBtn" data-i18n="submitReview">نشر التقييم مباشرة</button>
             <p class="form-note" id="reviewStatus" data-i18n="reviewStatusReady">التقييم سيظهر مباشرة بعد النشر.</p>
           </form>
@@ -178,6 +174,10 @@
           <span data-i18n="orderEyebrow">اطلب بأمان</span>
           <h2 data-i18n="orderTitle">بيانات الطلب</h2>
           <p data-i18n="orderSubtitle">هنفتح واتساب فورًا لتأكيد الطلب، والإيميل يتبعت تلقائيًا في الخلفية.</p>
+          <div class="checkout-trust-notes">
+            <span data-i18n="purchaseNoteCOD">الدفع عند الاستلام</span>
+            <span data-i18n="purchaseNoteDelivery">توصيل 24–72 ساعة</span>
+          </div>
         </div>
 
         <form class="order-form reveal" id="orderForm">
